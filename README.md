@@ -121,6 +121,7 @@ To use this batch processing server with Claude Desktop, add the following confi
                 "-Dspring.ai.mcp.server.stdio=true",
                 "-Dspring.main.web-application-type=none",
                 "-Dlogging.pattern.console=",
+                "-Dlogging.file.name=<log_path/batch-job-mcp-0.0.1-SNAPSHOT.log>",
                 "-jar",
                 "/absolute/path/to/batch-job-mcp-0.0.1-SNAPSHOT.jar"
             ],
@@ -134,6 +135,7 @@ To use this batch processing server with Claude Desktop, add the following confi
 
 Replace `/absolute/path/to/` with the actual path to your built jar file.
 
+Replace `log_path` with the actual path where you want the logs to be generated.
 ## Database Schema
 
 The application requires the following PostgreSQL tables:
@@ -142,6 +144,8 @@ The application requires the following PostgreSQL tables:
 - `credit_transactions`: Credit transactions
 - `credit_card_payments`: Credit card payment transactions
 - `categories`: List of transaction categories
+
+If the `spring.profiles.active` in the application.properties file is set to 'local', then these tables are automatically created.
 
 The Spring Batch tables are automatically created when `spring.batch.jdbc.initialize-schema=always`.
 

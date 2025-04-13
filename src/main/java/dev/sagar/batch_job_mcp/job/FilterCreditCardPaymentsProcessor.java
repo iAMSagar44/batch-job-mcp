@@ -21,7 +21,7 @@ class FilterCreditCardPaymentsProcessor implements ItemProcessor<FinancialTransa
 		if (transaction.transaction_detail().toLowerCase().contains("hsbc")) {
 			logger.info("Filtering credit card payment transaction and updating the Credit Card Payments table: {}",
 					transaction);
-			jdbcClient.sql("INSERT INTO credit_card_payments_test (amount, date, transaction_detail) VALUES (?, ?, ?)")
+			jdbcClient.sql("INSERT INTO credit_card_payments (amount, date, transaction_detail) VALUES (?, ?, ?)")
 				.param(transaction.amount())
 				.param(transaction.date())
 				.param(transaction.transaction_detail())

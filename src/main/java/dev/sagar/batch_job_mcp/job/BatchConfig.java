@@ -165,7 +165,7 @@ public class BatchConfig {
 	@Bean
 	JdbcBatchItemWriter<FinancialTransaction> itemWriter(DataSource dataSource) {
 		return new JdbcBatchItemWriterBuilder<FinancialTransaction>().dataSource(dataSource).sql("""
-				INSERT INTO financial_transaction_test (date, amount, transaction_detail, category, transaction_type)
+				INSERT INTO financial_transaction (date, amount, transaction_detail, category, transaction_type)
 				VALUES (?, ?, ?, ?, ?)
 				""").itemPreparedStatementSetter((item, ps) -> {
 			ps.setDate(1, Date.valueOf(item.date()));

@@ -20,7 +20,7 @@ class FilterCreditTransactionsProcessor implements ItemProcessor<FinancialTransa
 	public FinancialTransaction process(FinancialTransaction transaction) throws Exception {
 		if (transaction.amount() > 0) {
 			logger.info("Filtering credit transaction and updating the credits table");
-			jdbcClient.sql("INSERT INTO credit_transactions_test (amount, date, transaction_detail) VALUES (?, ?, ?)")
+			jdbcClient.sql("INSERT INTO credit_transactions (amount, date, transaction_detail) VALUES (?, ?, ?)")
 				.param(transaction.amount())
 				.param(transaction.date())
 				.param(transaction.transaction_detail())
